@@ -26,14 +26,15 @@ struct MixInCompOperators {
   }
 };
 
-template <typename T>
-static int counter = 0;
-
 template <typename Derived>
 struct MixInCounter {
-  MixInCounter() { ++counter<Derived>; }
+  static int counter;
+  MixInCounter() { ++counter; }
 
-  static int count() { return counter<Derived>; }
+  static int count() { return counter; }
 };
+
+template <typename Derived>
+int MixInCounter<Derived>::counter = 0;
 
 #endif
