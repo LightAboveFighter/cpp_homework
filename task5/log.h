@@ -66,8 +66,6 @@ class Log : public Singleton<Log> {
   };
 
   void message(LogLevel level, const std::string text) {
-    // std::time_t t;
-    // std::localtime(&t);
     messages.push_back(new Message(std::time(nullptr), text, level));
   }
 
@@ -75,6 +73,13 @@ class Log : public Singleton<Log> {
     for (Message* mes : messages) {
       std::cout << (*mes).to_string();
     }
+  }
+
+  ~Log() {
+    for (Message* mes : messages) {
+      delete mes;
+    }
+    messages.clear();
   }
 
  private:
