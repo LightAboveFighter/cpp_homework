@@ -5,5 +5,5 @@ set(HEADER_FILES typelist.h)
 
 # add_compile_options(-fconcepts)
 
-add_executable(homeworks main.cpp ${HEADER_FILES})
+add_executable(task2 main.cpp ${HEADER_FILES})
 

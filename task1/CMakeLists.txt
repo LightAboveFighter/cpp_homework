@@ -3,5 +3,5 @@ project(task1 VERSION 0.1.0 LANGUAGES C CXX)
 
 set(HEADER_FILES user.h group.h)
 
-add_executable(homeworks main.cpp ${HEADER_FILES})
+add_executable(task1 main.cpp ${HEADER_FILES})
 
