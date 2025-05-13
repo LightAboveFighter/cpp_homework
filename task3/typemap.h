@@ -1,3 +1,6 @@
+#ifndef __TYPEMAP_H__
+#define __TYPEMAP_H__
+
 #include "typelist.h"
 
 struct node_outer {
@@ -93,3 +96,5 @@ class TypeMap {
     return iter;
   }
 };
+
+#endif
