@@ -3,6 +3,8 @@
 
 #include "typelist.h"
 
+namespace __TypeMap_inner__ {
+
 struct node_outer {
   node_outer* next{nullptr};
   bool is_set{false};
@@ -35,9 +37,15 @@ struct node : node_outer {
   }
 };
 
+};  // namespace __TypeMap_inner__
+
 template <typename... T>
 class TypeMap {
   using Keys = TypeList<T...>;
+  using node_outer = typename __TypeMap_inner__::node_outer;
+
+  template <typename... Types>
+  using node = typename __TypeMap_inner__::node<Types...>;
 
  public:
   TypeMap() {
@@ -53,6 +61,7 @@ class TypeMap {
       delete start;
       start = next;
     }
+    delete start;
   }
 
   template <typename Type>
@@ -78,11 +87,11 @@ class TypeMap {
   }
 
   template <typename Type>
-  bool is_contains() {
+  bool is_contains() const {
     return get_node<Type>()->is_set;
   }
 
-  constexpr size_t size() { return Size<Keys>; }
+  constexpr size_t size() const { return Size<Keys>; }
 
  private:
   node_outer* start;
