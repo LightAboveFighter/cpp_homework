@@ -70,13 +70,13 @@ class Log : public Singleton<Log> {
   }
 
   void print() {
-    for (Message* mes : messages) {
+    for (Message* const mes : messages) {
       std::cout << (*mes).to_string();
     }
   }
 
   ~Log() {
-    for (Message* mes : messages) {
+    for (const Message* mes : messages) {
       delete mes;
     }
     messages.clear();
