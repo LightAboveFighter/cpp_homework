@@ -5,7 +5,7 @@
 #include <type_traits>
 
 template <typename... T>
-struct TypeList {};
+struct TypeList;
 
 namespace __TypeList_inner__ {
 
@@ -19,7 +19,7 @@ struct Size<TypeList<T...>> {
 
 template <typename Elem, typename List>
 struct PushBack;
-  
+
 template <typename Elem, typename... T>
 struct PushBack<Elem, TypeList<T...>> {
   using type = TypeList<T..., Elem>;
