@@ -173,6 +173,9 @@ int main() {
     }
 
     std::vector<std::string> tokens = split(line);
+    if (tokens.size() == 1 && tokens[0] == "q") {
+      break;
+    }
     processCommand(tokens);
   }
 

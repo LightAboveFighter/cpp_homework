@@ -26,7 +26,7 @@ struct Group {
   ~Group() { deleteGroup(); }
 
   void deleteGroup() {
-    for (auto* user : _members) {
+    for (const auto* user : _members) {
       delete user;
     }
     _members.clear();
