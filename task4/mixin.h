@@ -30,6 +30,7 @@ template <typename Derived>
 struct MixInCounter {
   static int counter;
   MixInCounter() { ++counter; }
+  ~MixInCounter() { --counter; }
 
   static int count() { return counter; }
 };
