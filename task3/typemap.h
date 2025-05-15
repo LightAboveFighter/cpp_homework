@@ -87,7 +87,7 @@ class TypeMap {
   }
 
   template <typename Type>
-  bool is_contains() const {
+  const bool is_contains() const {
     return get_node<Type>()->is_set;
   }
 
@@ -97,7 +97,7 @@ class TypeMap {
   node_outer* start;
 
   template <typename Type>
-  node_outer* get_node() {
+  node_outer* get_node() const {
     node_outer* iter = start;
     for (int i = 0; i < IndexOf<Keys, Type>; ++i) {
       iter = iter->next;
