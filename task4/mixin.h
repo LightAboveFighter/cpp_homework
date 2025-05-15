@@ -3,26 +3,26 @@
 
 template <typename Derived>
 struct MixInCompOperators {
-  bool operator>(Derived const& other) {
-    return other < (*static_cast<Derived*>(this));
+  bool operator>(Derived const& other) const {
+    return other < (*static_cast<const Derived*>(this));
   }
 
-  bool operator>=(Derived const& other) {
-    return !((*static_cast<Derived*>(this)) < other);
+  bool operator>=(Derived const& other) const {
+    return !(other > (*static_cast<const Derived*>(this)));
   }
 
-  bool operator==(Derived const& other) {
-    return !((*static_cast<Derived*>(this)) < other ||
-             (*static_cast<Derived*>(this)) > other);
+  bool operator==(Derived const& other) const {
+    return !((*static_cast<const Derived*>(this)) < other ||
+             (*static_cast<const Derived*>(this)) > other);
   }
 
-  bool operator!=(Derived const& other) {
-    return (*static_cast<Derived*>(this)) < other ||
-           (*static_cast<Derived*>(this)) > other;
+  bool operator!=(Derived const& other) const {
+    return (*static_cast<const Derived*>(this)) < other ||
+           (*static_cast<const Derived*>(this)) > other;
   }
 
-  bool operator<=(Derived const& other) {
-    return !((*static_cast<Derived*>(this)) > other);
+  bool operator<=(Derived const& other) const {
+    return !((*static_cast<const Derived*>(this)) > other);
   }
 };
 
