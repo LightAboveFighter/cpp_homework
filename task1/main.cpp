@@ -40,6 +40,20 @@ void deleteGroup(int id) {
 
 void createGroup(int id) { groups.push_back(new Group(id)); }
 
+void addUser(int group_id, int user_id) {
+  auto g = findGroup(group_id);
+  auto u = findUser(user_id);
+  if (g == groups.end()) {
+    std::cout << "Group with id=" << group_id << " is not found" << std::endl;
+    return;
+  }
+  if (u == users.end()) {
+    std::cout << "User with id=" << user_id << " is not found" << std::endl;
+    return;
+  }
+  (*g)->addUser(*u);
+}
+
 void allGroups() {
   std::cout << std::endl;
   for (auto group : groups) {
@@ -72,6 +86,7 @@ void deleteUser(int id) {
     return;
   }
   users.erase(target);
+  delete *target;
 }
 
 void createUser(const std::string& name, int id) {
@@ -153,6 +168,12 @@ void processCommand(const std::vector<std::string>& tokens) {
       return;
     }
     getGroup(std::stoi(tokens[1]));
+  } else if (command == "addUser") {
+    if (tokens.size() != 3) {
+      std::cerr << "Invalid command format for getGroup\n";
+      return;
+    }
+    addUser(std::stoi(tokens[1]), std::stoi(tokens[2]));
   } else {
     std::cerr << "Unknown command: " << command << "\n";
   }
