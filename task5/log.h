@@ -16,17 +16,10 @@ class Singleton {
 
   template <typename... T>
   static Derived* Instance(T... args) {
-    if (object == nullptr) {
-      object = new Derived(args...);
-    }
+    static Derived* object = new Derived(args...);
     return object;
   }
-
- private:
-  static Derived* object;
 };
-template <typename Derived>
-Derived* Singleton<Derived>::object = nullptr;
 
 enum LogLevel { LOG_NORMAL = 0, LOG_WARNING, LOG_ERROR };
 
