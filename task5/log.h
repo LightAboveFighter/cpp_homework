@@ -10,22 +10,20 @@ template <typename Derived>
 class Singleton {
  public:
   Singleton(Singleton& other) = delete;
+  Singleton() {}
 
   void operator=(const Singleton&) = delete;
 
   template <typename... T>
   static Derived* Instance(T... args) {
     if (object == nullptr) {
-      return new Derived(args...);
+      object = new Derived(args...);
     }
     return object;
   }
 
  private:
   static Derived* object;
-
- protected:
-  Singleton() { object = static_cast<Derived*>(this); }
 };
 template <typename Derived>
 Derived* Singleton<Derived>::object = nullptr;
