@@ -7,7 +7,7 @@
 #include <string>
 #include <unordered_map>
 
-class ExpressionFactory;  // Forward declaration
+class ExpressionFactory;
 
 struct Expression {
   virtual double calculate(std::map<std::string, double> const& context) = 0;
