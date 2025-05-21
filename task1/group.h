@@ -15,8 +15,6 @@ struct Group {
 
   std::list<User*>::iterator findUser(int id);
 
-  ~Group() { deleteGroup(); }
-
   void deleteGroup();
 
   void getUser(int id) const;

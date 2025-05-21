@@ -14,9 +14,6 @@ std::list<User*>::iterator Group::findUser(int id) {
 }
 
 void Group::deleteGroup() {
-  for (const auto* user : _members) {
-    delete user;
-  }
   _members.clear();
 }
 

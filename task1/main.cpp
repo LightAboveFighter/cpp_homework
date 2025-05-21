@@ -36,6 +36,7 @@ void deleteGroup(int id) {
     return;
   }
   groups.erase(target);
+  delete *target;
 }
 
 void createGroup(int id) { groups.push_back(new Group(id)); }
